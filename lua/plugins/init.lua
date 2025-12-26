@@ -47,10 +47,10 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     event = "VeryLazy",
-    dependencies = {"nvim-lspconfig"},
-    config = function ()
-      require("configs.mason-lspconfig")
-    end
+    dependencies = { "nvim-lspconfig" },
+    config = function()
+      require "configs.mason-lspconfig"
+    end,
   },
   -- These are some examples, uncomment them if you want to see them work!
   -- Edited default treesitter in 23/04/2025
@@ -60,5 +60,10 @@ return {
     config = function()
       require "configs.nvim-treesitter"
     end,
+  },
+  {
+    "sphamba/smear-cursor.nvim",
+    lazy = false,
+    opts = require("configs.smear-cursor"),
   },
 }
