@@ -2,7 +2,7 @@ local lspconfig = package.loaded["lspconfig"]
 
 -- List of servers to ignore during install
 -- Edit 13/9/2025: ignore pyright because Mason had a problem installing it
-local ignore_install = {"pyright"} 
+local ignore_install = {}
 
 -- Helper function to find if value is in table
 local function table_contains(table, value)

@@ -10,27 +10,18 @@ local lspconfig = require "lspconfig"
 -- require("mason-lspconfig").setup {
 --   ensure_installed = { "html", "cssls", "clangd" },
 -- }
-local servers = { "html", "cssls", "clangd", "pyright" }
+local servers = { "html", "cssls", "clangd", "basedpyright" }
 lspconfig._myservers = servers
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
 
 for _, lsp in ipairs(servers) do
-  if lsp == "pyright" then
-    lspconfig.pyright.setup {
-      on_attach = nvlsp.on_attach,
-      on_init = nvlsp.on_init,
-      capabilities = nvlsp.capabilities,
-      cmd = { "pyright-langserver", "--stdio" },
-    }
-  else
-    lspconfig[lsp].setup {
-      on_attach = nvlsp.on_attach,
-      on_init = nvlsp.on_init,
-      capabilities = nvlsp.capabilities,
-    }
-  end
+  lspconfig[lsp].setup {
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
+    capabilities = nvlsp.capabilities,
+  }
 end
 
 -- configuring single server, example: typescript
