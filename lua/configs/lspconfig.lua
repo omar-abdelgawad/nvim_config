@@ -10,7 +10,7 @@ local lspconfig = require "lspconfig"
 -- require("mason-lspconfig").setup {
 --   ensure_installed = { "html", "cssls", "clangd" },
 -- }
-local servers = { "html", "cssls", "clangd", "basedpyright" }
+local servers = { "html", "cssls", "clangd", "pyright" }
 lspconfig._myservers = servers
 local nvlsp = require "nvchad.configs.lspconfig"
 

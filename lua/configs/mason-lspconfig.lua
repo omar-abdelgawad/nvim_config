@@ -2,7 +2,10 @@ local lspconfig = package.loaded["lspconfig"]
 
 -- List of servers to ignore during install
 -- Edit 13/9/2025: ignore pyright because Mason had a problem installing it
-local ignore_install = {}
+-- 16/3/2026: I installed pyright using "uv tool install pyright[nodejs]" because
+-- turns out that snap's node doesn't work with nvim for some reason and probably
+-- it was the reason mason couldn't install pyright so yeah
+local ignore_install = {"pyright"}
 
 -- Helper function to find if value is in table
 local function table_contains(table, value)
