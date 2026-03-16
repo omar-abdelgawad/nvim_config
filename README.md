@@ -7,3 +7,12 @@
 # Credits
 
 1) Lazyvim starter https://github.com/LazyVim/starter as nvchad's starter was inspired by Lazyvim's . It made a lot of things easier!
+
+# Custom
+
+to use this config you can just clone it inside ~/.config with nvim name.
+
+```bash
+git clone https://github.com/omar-abdelgawad/nvim_config.git ~/config/nvim
+```
+and then open nvim to install dependencies automatically.
