@@ -33,3 +33,14 @@ vim.keymap.set("v", "\'", "<esc>`>a\'<esc>`<i\'<esc>", { remap = false})
 
 -- 21/07/2025 add shortcut for code action mainly for match arm
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+
+-- 03/04/2026 remove nvim terminal bindings
+-- there were multiple mappings to remove such as `Alt + v or h or i` and `leader + v or h` and the eccentric `pressing Esc + i at the same exact time` for a floating window. I realized that I don't need to remove all of them as it can cause errors I don't understand so I just removed two of them
+vim.keymap.del("n", "<leader>h")
+vim.keymap.del("n", "<leader>v")
+-- vim.keymap.del("n", "<Esc>i")
+
+-- These are the ones I use frequently and hopefully I can replace them in the future with tmux or zellij
+-- vim.keymap.del({ "n", "t" }, "<A-v>")
+-- vim.keymap.del({ "n", "t" }, "<A-h>")
+-- vim.keymap.del({ "n", "t" }, "<A-i>")
