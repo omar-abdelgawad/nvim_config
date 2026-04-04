@@ -56,6 +56,8 @@ return {
   -- Edited default treesitter in 23/04/2025
   {
     "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    -- branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require "configs.nvim-treesitter"

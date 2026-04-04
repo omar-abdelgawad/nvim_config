@@ -14,6 +14,7 @@ local options = {
     "vim",
     "vimdoc",
     "yaml",
+    "rust"
   },
   highlight = {
     enable = true,

@@ -16,3 +16,9 @@ to use this config you can just clone it inside ~/.config with nvim name.
 git clone https://github.com/omar-abdelgawad/nvim_config.git ~/config/nvim
 ```
 and then open nvim to install dependencies automatically.
+
+## notes for myself and things to do:
+
+- remember that pyright install is ignored because it breaks with some versions of npm so I just gave up and installed it with uv
+- nvchad requirements keeps changing so I found out that now tree sitter requires installing a cli using `cargo install --locked tree-sitter-cli`
+
