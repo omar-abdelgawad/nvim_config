@@ -60,61 +60,67 @@ return {
     lazy = false, -- this plugin doesn't support lazy loading
     build = ":TSUpdate",
     branch = "main",
- config = function()
-        local ts = require 'nvim-treesitter'
-        local parsers = {
-    "bash",
-    "c",
-    "cmake",
-    "cpp",
-    "lua",
-    "luadoc",
-    "make",
-    "markdown",
-    "printf",
-    "python",
-    "toml",
-    "vim",
-    "vimdoc",
-    "yaml",
-    "rust",
-    "diff",
-    "dockerfile",
-    "git_config",
-    "gitcommit",
-    "gitignore",
-    "sql",
-        }
+    config = function()
+      local ts = require "nvim-treesitter"
+      local parsers = {
+        "bash",
+        "c",
+        "cmake",
+        "cpp",
+        "lua",
+        "luadoc",
+        "make",
+        "markdown",
+        "printf",
+        "python",
+        "toml",
+        "vim",
+        "vimdoc",
+        "yaml",
+        "rust",
+        "diff",
+        "dockerfile",
+        "git_config",
+        "gitcommit",
+        "gitignore",
+        "sql",
+      }
 
-        for _, parser in ipairs(parsers) do
-            ts.install(parser)
+      for _, parser in ipairs(parsers) do
+        ts.install(parser)
+      end
+
+      -- Not every tree-sitter parser is the same as the file type detected
+      -- So the patterns need to be registered more cleverly
+      local patterns = {}
+      for _, parser in ipairs(parsers) do
+        local parser_patterns = vim.treesitter.language.get_filetypes(parser)
+        for _, pp in pairs(parser_patterns) do
+          table.insert(patterns, pp)
         end
+      end
 
-        -- Not every tree-sitter parser is the same as the file type detected
-        -- So the patterns need to be registered more cleverly
-        local patterns = {}
-        for _, parser in ipairs(parsers) do
-            local parser_patterns = vim.treesitter.language.get_filetypes(parser)
-            for _, pp in pairs(parser_patterns) do
-                table.insert(patterns, pp)
-            end
-        end
+      vim.treesitter.language.register("groovy", "Jenkinsfile")
+      vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.wo[0][0].foldmethod = "expr"
 
-        vim.treesitter.language.register("groovy", "Jenkinsfile")
-        vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-        vim.wo[0][0].foldmethod = 'expr'
-
-        vim.api.nvim_create_autocmd('FileType', {
-            pattern = patterns,
-            callback = function()
-                vim.treesitter.start()
-            end,
-        })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = patterns,
+        callback = function()
+          vim.treesitter.start()
+        end,
+      })
     end,
   },
   {
     "sphamba/smear-cursor.nvim",
     lazy = false,
-    opts = require("configs.smear-cursor"),
+    opts = require "configs.smear-cursor",
   },
+  -- TODO: add inlay hints at end of line for rust only
+  -- {
+  --   "chrisgrieser/nvim-lsp-endhints",
+  --   event = "LspAttach",
+  --   opts = {}, -- minimal setup works
+  -- },
 }
