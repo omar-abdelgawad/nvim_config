@@ -30,7 +30,8 @@ return {
     end,
   },
   -- {
-  --   "williamboman/mason.nvim"
+  --   "mason-org/mason.nvim",
+  --   opts = {},
   -- },
   -- Turns out I had to explicity tell lazy to load This
   -- config even though configs.lspconfig is part of the ensure_install
@@ -45,9 +46,12 @@ return {
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     event = "VeryLazy",
-    dependencies = { "nvim-lspconfig" },
+    dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+    },
     config = function()
       require "configs.mason-lspconfig"
     end,

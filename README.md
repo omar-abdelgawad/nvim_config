@@ -22,3 +22,5 @@ and then open nvim to install dependencies automatically.
 - remember that pyright install is ignored because it breaks with some versions of npm so I just gave up and installed it with uv
 - nvchad requirements keeps changing so I found out that now tree sitter requires installing a cli using `cargo install --locked tree-sitter-cli`
 - remember to have rust-analyzer installed for rustaceanvim plugin
+- remember that you still need installers like npm, cargo and python for mason as it uses them for installing the lsps. for more info use `checkhealth mason`
+- remember to have installed `rg` and `fd` for faster telesecope search. I installed them using `cargo install`
